@@ -38,10 +38,16 @@ class ValueAssignmentBuilder {
 
     final rightSide = (sourceField.isStatic
             // Static field.
-            ? EmitterHelper.current
-                .refer(sourceField.enclosingElement.name!, sourceField.enclosingElement.library?.identifier)
+            ? EmitterHelper.current.refer(
+                sourceField.enclosingElement3.name!,
+                sourceField.enclosingElement3.library?.identifier,
+              )
             // Non static field.
-            : refer(sourceField.isStatic ? '${sourceField.enclosingElement.name}' : 'model'))
+            : refer(
+                sourceField.isStatic
+                    ? '${sourceField.enclosingElement3.name}'
+                    : 'model',
+              ))
         .property(sourceField.name);
 
     final assignmentBuilders = [
@@ -112,9 +118,11 @@ class ValueAssignmentBuilder {
         false;
 
     if (shouldIgnoreNull && sourceNullable && !targetNullable) {
-      return refer(sourceField.isStatic ? '${sourceField.enclosingElement.name}' : 'model')
-          .property(sourceField.name)
-          .nullChecked;
+      return refer(
+        sourceField.isStatic
+            ? '${sourceField.enclosingElement3.name}'
+            : 'model',
+      ).property(sourceField.name).nullChecked;
     }
 
     return rightSide;

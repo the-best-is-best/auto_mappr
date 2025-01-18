@@ -22,7 +22,8 @@ mixin NestedObjectMixin on AssignmentBuilderBase {
     Expression? convertMethodArgument,
     bool includeGenericTypes = false,
   }) {
-    final sourceOnModel = AssignmentBuilderBase.modelReference.property(assignment.sourceField!.displayName);
+    final sourceOnModel = AssignmentBuilderBase.modelReference
+        .property(assignment.sourceField!.displayName);
     final fieldMapping = mapping.tryGetFieldMapping(assignment.targetName);
     // Source and target is the same.
 
@@ -61,9 +62,10 @@ mixin NestedObjectMixin on AssignmentBuilderBase {
 
     // Unknown mapping.
     if (nestedMapping == null) {
-      final sourceParentClass = assignment.sourceField?.enclosingElement.name;
-      final targetParentClass = assignment.targetField?.enclosingElement.name;
-      final enclosingMappingMessage = "Parent mapping holding this is '$sourceParentClass' -> '$targetParentClass'";
+      final sourceParentClass = assignment.sourceField?.enclosingElement3.name;
+      final targetParentClass = assignment.targetField?.enclosingElement3.name;
+      final enclosingMappingMessage =
+          "Parent mapping holding this is '$sourceParentClass' -> '$targetParentClass'";
 
       if (target.isNullable) {
         log.warning(
